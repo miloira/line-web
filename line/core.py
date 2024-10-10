@@ -25,9 +25,7 @@ def manual_chat_mode(f: typing.Callable) -> typing.Callable[["Line", typing.Any]
             raise ValueError("Missing required argument: contact_id")
 
         self.set_use_manual_chat(kwargs["contact_id"])
-        data = f(self, *args, **kwargs)
-        self.delete_use_manual_chat(kwargs["contact_id"])
-        return data
+        return f(self, *args, **kwargs)
 
     return wrapper
 
